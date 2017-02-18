@@ -1,0 +1,34 @@
+#!/bin/bash -xe
+
+#Setting up variables
+
+NEW_THEME_VENDOR=$1
+NEW_THEME_PARENT_NAME=$3
+NEW_THEME_NAME=$2
+
+    #formating variables
+    NEWLINE="\n"
+
+
+#Composging Variables
+
+mkdir app/design/frontend/${NEW_THEME_VENDOR}
+mkdir app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}
+mkdir app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/web
+mkdir app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/web/css
+mkdir app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/web/images
+mkdir app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/web/js
+mkdir app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/web/css/source
+mkdir app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/web/fonts
+mkdir app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/media
+mkdir app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/i18n
+touch app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/registration.php
+touch app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/theme.xml
+
+#Creating base files
+echo "<?php ${NEWLINE} ${NEWLINE} /*  ${NEWLINE} * To change this license header, choose License Headers in Project Properties. ${NEWLINE} * To change this template file, choose Tools | Templates ${NEWLINE} * and open the template in the editor. ${NEWLINE} */ ${NEWLINE} \Magento\Framework\Component\ComponentRegistrar::register( ${NEWLINE}    \Magento\Framework\Component\ComponentRegistrar::THEME, ${NEWLINE} 'frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}', ${NEWLINE} __DIR__ ${NEWLINE} );" >> app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/registration.php
+
+echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?> ${NEWLINE} <!-- ${NEWLINE} To change this license header, choose License Headers in Project Properties. ${NEWLINE} To change this template file, choose Tools | Templates ${NEWLINE} and open the template in the editor. ${NEWLINE} --> ${NEWLINE} <theme xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"urn:magento:framework:Config/etc/theme.xsd\"> ${NEWLINE} <title>${NEW_THEME_NAME}</title> ${NEWLINE} <parent>Magento/${NEW_THEME_PARENT_NAME}</parent>" >> app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}/theme.xml
+
+#Now, let's open this theme's base folder
+subl app/design/frontend/${NEW_THEME_VENDOR}/${NEW_THEME_NAME}
